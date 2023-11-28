@@ -31,6 +31,11 @@ def is_price_range_valid(price_lower_limit, price_upper_limit):
 ##################################################################
 def calc_average_expenses(csv_list):
     average = 0
+    for item in csv_list:
+
+        average = sum(float(item["price"])) / len(item["price"])
+
+    print("Average of list: ", round(average, 3))
 
     # Add your implementation from here
     #HINT start with this code: for item in csv_list:
@@ -49,7 +54,10 @@ def calc_average_expenses(csv_list):
 ##################################################################
 def calc_total_expenses(csv_list):
     total_expenses = 0
+    for item in csv_list:
+       total_expenses =sum(float(item["price"]))
 
+    print("Total of list: ", total_expenses)
     # Add your implementation from here
     #HINT Start with this code: for item in csv_list:
 
