@@ -68,6 +68,20 @@ def calc_total_expenses(csv_list):
 ##############################################################
 def get_items_by_price_range(csv_list, str_price_lower_limit, str_price_upper_limit):
     result = []
+    if float(str_price_lower_limit)>float(str_price_upper_limit) :
+        print("Invalid Price Range Entered")
+        display_main_menu()
+    elif float(str_price_lower_limit)<0.0:
+        print("Invalid Price Range Entered")
+        display_main_menu()
+    elif float(str_price_upper_limit)<0.0:
+        print("Invalid Price Range Entered")
+        display_main_menu()
+    else:
+        print("Date\t\t\tExpense Item\t\tPrice")
+        for item in csv_list:
+            if float(item["price"]) <= float(str_price_upper_limit)   and float(item["price"])  >= float(str_price_lower_limit) :
+                print(item["date"] + "\t\t"+ item["expense_item"] + "\t\t\t\t" + item["price"])
 
     # Add your implementation from here
     #HINT start with this code: for item in csv_list:
@@ -86,7 +100,12 @@ def get_items_by_price_range(csv_list, str_price_lower_limit, str_price_upper_li
 ##################################################################
 def sort_by_items(csv_list):
     result = []
+    print("Date\t\t\tExpense Item\t\tPrice")
 
+    for item in csv_list:
+        while not (sorted(item["expense_item"])):
+            sorted(item["expense_item"])
+            print(item["date"] + "\t\t" + item["expense_item"] + "\t\t\t\t" + item["price"])
     # Add your implementation from here
 
     return result
@@ -108,6 +127,7 @@ def display_main_menu():
     print("1 - Display all records")
     print("2 - Display statistics")
     print("3 - Display items within price range")
+    print("4 - Display all items in alphabetical order")
 
     print("Q - Quit")
 
@@ -140,6 +160,8 @@ def display_main_menu():
         # Invalid price range
         else:
             print("\nInvalid Price Range entered !")
+    elif option == '4':
+        sort_by_items(csv_list)
 
     # Quit application
     elif option == 'Q':
